@@ -34,7 +34,7 @@ def placeOrder(iname,price,qty):
     qty=qty
     orderID = session.get('OrderID')
     data={"item":title,"price":price,"Quantity":qty}
-    db.child(orderID).child("items").set(data)
+    db.child("Orders").child(orderID).child("items").set(data)
 
 
 
