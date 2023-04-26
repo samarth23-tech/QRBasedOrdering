@@ -10,8 +10,9 @@ html,body{
   height: 100%;
   width: 100%;
   place-items: center;
-  background-image: url("{{ url_for('static',filename="image/login12.jpeg") }}");
+  /* background-image: url("{{ url_for('static',filename=" image/login12.jpeg") }}"); */
   background-size: 100%;
+  background: #e74b77;
 }
 
 ::selection{
