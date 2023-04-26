@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, request, redirect, url_for,session
 from .models import User
 from . import db   #means from __init__.py import db
 from flask_login import login_user, login_required, logout_user, current_user
-import pyrebase
+import pyrebase,random
 authenticate= Blueprint('authenticate', __name__)
 
 firebaseConfig={
@@ -15,6 +15,9 @@ firebaseConfig={
   "appId": "1:364448122744:web:476bff4d8e32a9ecc26a8d",
   "measurementId": "G-3HVXNBTYDH"
 }
+def generate_random_number():
+    unique_number = random.randint(100, 999)
+    return unique_number
 def signup(e,passw):
    
     firebase=pyrebase.initialize_app(firebaseConfig)
@@ -75,10 +78,12 @@ def sign_up():
 @authenticate.route('/')
 def home():
     if 'user' in session:
+        if 'orderid' not in session:
+            no=generate_random_number()
+            session['OrderID']=no
         return render_template('home2.html')
     else:
         return redirect(url_for('authenticate.login'))
-
 
 
 
